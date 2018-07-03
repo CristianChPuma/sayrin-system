@@ -1,0 +1,141 @@
+{{ include('dashboard/components/head.html.twig',{ 'pagetitle': 'Gallery' }) }}
+
+<body>
+
+<!-- Some Variables -->
+
+
+   <!-- nav -->
+
+    {{ include('dashboard/components/leftnav.html.twig',{ }) }}
+
+
+
+<div class="administration-container uk-height-viewport container-gray">
+<div>
+
+  <div class="container-title">
+    <div class="icon-container uk-margin-medium-right">
+       <img src="{{ asset('assets/icons/star.svg') }}" alt="">
+    </div>
+
+    <div class="section-title uk-margin-medium-right">
+      <h1>My Files</h1>
+      <h6>Manage your files</h6>
+    </div>
+  </div>
+
+<div class="blogmenu-container uk-float-left">
+<div>
+  <a href=""> <span class="uk-icon" uk-icon="icon: upload"></span> Upload New File</a>
+</div>
+</div>
+
+
+</div>
+
+
+<div class="uk-margin-medium-top uk-container" uk-filter="target: .js-filter">
+
+  <ul class="uk-subnav uk-subnav-pill filter-controls">
+          <li class="uk-active" uk-filter-control><a href="#">All</a></li>
+          <li uk-filter-control="[data-type='image']"><a href="#">Images</a></li>
+          <li uk-filter-control="[data-type='audio']"><a href="#">Audio</a></li>
+          <li uk-filter-control="[data-type='video']"><a href="#">Video</a></li>
+      </ul>
+
+  <ul class="js-filter uk-child-width-1-3@s uk-grid-match files-container " uk-lightbox="animation: slide" uk-grid>
+
+
+{% for item in files %}
+
+
+{% if item.type == 'image' %}
+<li data-type="{{ item.type }}" >
+{% endif %}
+
+{% if item.type == 'audio' %}
+<li data-type="{{ item.type }}" >
+{% endif %}
+
+{% if item.type == 'video' %}
+<li data-type="{{ item.type }}" >
+{% endif %}
+
+<div >
+
+{% if item.type == 'image' %}
+<a data-type="image" data-caption="{{ item.title }}" href="{{item.cover}}">
+  <div class="uk-height-medium uk-background-cover" style="background-image: url({{ item.cover }});">
+    {% endif %}
+
+
+    {% if item.type == 'audio' %}
+    <a onclick="UIkit.notification({message: '<span uk-icon=\'icon: play\'></span> Playing:  {{ item.title }} <br /> Press Space To Stop Playing. ' })" data-color="blue" href="https://cdn.dribbble.com/users/824356/screenshots/3381902/400x300-bez-shine.gif" data-type="image" class="playerButton"  data-caption="{{ item.title }}" data-audiopath="{{ item.source }}">
+      <div class="uk-height-medium uk-background-cover" style="background-image: url(https://cdn.dribbble.com/users/824356/screenshots/3381902/400x300-bez-shine.gif);">
+        {% endif %}
+
+        {% if item.type == 'video' %}
+        <a data-color="black" href="{{ item.source }}" data-caption="{{ item.title }}" data-type="video">
+          <div class="uk-height-medium uk-background-cover" style="background-image: url({{ item.cover }});">
+            {% endif %}
+
+    <div class="gradient-overlay"></div>
+
+    <div class="size-information uk-position-top-right">
+      <p>{{ item.size }} MB</p>
+    </div>
+
+    {% if (item.type == 'video')  or (item.type == 'audio') %}
+
+   <div class="uk-position-center">
+     <span class="uk-icon uk-light" uk-icon="icon:play-circle; ratio:2"></span>
+   </div>
+
+    {% endif %}
+
+    <div class="meta-information uk-position-bottom">
+      <p class="title-container">{{ item.title }}</p>
+      <p><span class="uk-icon uk-margin-small-right" uk-icon="icon: download"></span> {{ item.download_counter }} times</p>
+    </div>
+  </div>
+</a>
+
+</div>
+
+</li>
+
+
+{% endfor %}
+
+</ul>
+
+
+<ul class="uk-pagination uk-margin-medium-top uk-flex-center" uk-margin>
+  {% if currentPage > 1 %}
+    <li><a href="{{ path('gallery', {'page': currentPage - 1}) }}"><span uk-pagination-previous></span></a></li>
+  {% endif %}
+
+    {% for index in 1..pagesQuantity %}
+           {% if index == currentPage %}
+           <li class="uk-active"><a  href="{{ path('gallery', {'page': index}) }}">{{ index }}</a></li>
+           {% else %}
+           <li><a href="{{ path('gallery', {'page': index}) }}">{{ index }}</a></li>
+           {% endif %}
+    {% endfor %}
+
+    {% if currentPage < pagesQuantity %}
+    <li><a href="{{ path('gallery', {'page': currentPage + 1}) }}"><span uk-pagination-next></span></a></li>
+    {% endif %}
+</ul>
+
+</div>
+
+
+
+</div>
+
+
+
+
+{{ include('dashboard/components/foot.html.twig',{ }) }}

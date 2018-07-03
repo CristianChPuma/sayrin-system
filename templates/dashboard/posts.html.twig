@@ -1,0 +1,215 @@
+{{ include('dashboard/components/head.html.twig',{ 'pagetitle': 'Posts' }) }}
+
+<body>
+
+<!-- Some Variables -->
+
+
+<div class="">
+
+   <!-- nav -->
+
+
+    {{ include('dashboard/components/leftnav.html.twig',{ }) }}
+
+
+<div class="administration-container  uk-height-viewport container-gray">
+<div class="uk-container">
+
+  <div class="container-title">
+    <div class="icon-container uk-margin-medium-right">
+       <img src="{{ asset('assets/icons/star.svg') }}" alt="">
+    </div>
+
+    <div class="section-title uk-margin-medium-right">
+      <h1>Planner Board</h1>
+      <h6>Netguru</h6>
+    </div>
+  </div>
+
+
+
+  <div class="blogpost-container">
+
+   <ul class="uk-list blogpost-list">
+
+
+{% for blogpost in posts %}
+
+  {#   <li class="post-item">
+
+
+<div class="uk-grid-match owo uk-grid-collapse" uk-grid>
+
+  <div class="uk-width-1-5@s">
+    <div class="cover-container" style="background-image: url({{ blogpost.cover }})"></div>
+  </div>
+
+  <div class="uk-width-1-2@s">
+    <div class="text-content">
+    <h4 class="title-container">{{ blogpost.title }}</h4>
+    <p class="content-container">{{ blogpost.description }}</p>
+    <p class="release-date uk-margin-small-right"><span class="uk-icon uk-margin-small-right" uk-icon="icon: calendar"></span>Published at: 25th, June 2018</p>
+    <p class="tags-container"><span class="uk-icon uk-margin-small-right" uk-icon="icon: tag"></span>Tags:
+         <a class="jp-side-margin" href="#">Wow</a>
+         <a class="jp-side-margin" href="#">Wow</a>
+         <a class="jp-side-margin" href="#">Wow</a>
+    </p>
+    </div>
+  </div>
+
+  <div class="uk-width-expand@s">
+
+     <div class="grud-container">
+
+      <div class="uk-child-width-1-3 uk-grid-collapse uk-grid-match" uk-grid>
+
+<div>
+  <div class="action-container uk-text-center">
+    <div class="action-button  edit">
+        <a href=""><span class="uk-icon" uk-icon="icon: file-edit; ratio: 0.8"></span></a>
+    </div>
+    <h6>Edit</h6>
+  </div>
+</div>
+
+<div>
+  <div class="action-container uk-text-center">
+    <div class="action-button  view">
+        <a href=""><span class="uk-icon" uk-icon="icon: image; ratio: 0.8"></span></a>
+    </div>
+    <h6>View</h6>
+  </div>
+</div>
+
+<div>
+  <div class="action-container uk-text-center">
+    <div class="action-button  stats">
+        <a href=""><span class="uk-icon" uk-icon="icon: table; ratio: 0.8"></span></a>
+    </div>
+    <h6>Stats</h6>
+  </div>
+</div>
+
+<div></div>
+
+<div>
+  <div class="action-container uk-text-center">
+    <div class="action-button  trash">
+        <a href=""><span class="uk-icon" uk-icon="icon: trash; ratio: 0.8"></span></a>
+    </div>
+    <h6>Trash</h6>
+  </div>
+</div>
+
+<div>
+  <div class="action-container uk-text-center">
+    <div class="action-button  more">
+        <a href=""><span class="uk-icon" uk-icon="icon: more; ratio: 0.8"></span></a>
+    </div>
+    <h6>More</h6>
+  </div>
+</div>
+
+      </div>
+
+     </div>
+
+  </div>
+
+
+</div>
+
+
+     </li>#}
+
+
+<li class="post">
+
+  <div class="uk-margin-remove-left" uk-grid>
+
+
+   {#<div class="cover-image uk-height-small uk-background-cover" style="background-image: url({{ blogpost.cover }});"></div>
+   <div class="content">
+     <h4 class="title-container">{{ blogpost.title }}</h4>
+     <p class="content-container">{{ blogpost.description }}</p>
+     <p class="release-date uk-margin-small-right"><span class="uk-icon uk-margin-small-right" uk-icon="icon: calendar"></span>Published at: 25th, June 2018</p>
+     <p class="tags-container"><span class="uk-icon uk-margin-small-right" uk-icon="icon: tag"></span>Tags:
+          <a class="jp-side-margin" href="#">Wow,</a>
+          <a class="jp-side-margin" href="#">Wow,</a>
+          <a class="jp-side-margin" href="#">Wow</a>
+     </p>
+   </div>#}
+
+   <div class="uk-width-1-4@s uk-padding-small ">
+
+
+     <div class="cover-image uk-background-cover" style="background-image: url({{ blogpost.cover }});"></div>
+   </div>
+   <div class="uk-width-expand@s content-container uk-padding-small">
+     <div class="content ">
+     <h4 class="title-container">{{ blogpost.title }}</h4>
+     <p class="content-container">{{ blogpost.description }}</p>
+     <p class="release-date uk-margin-small-right"><span class="uk-icon uk-margin-small-right" uk-icon="icon: calendar"></span>Published at: 25th, June 2018</p>
+     <p class="tags-container"><span class="uk-icon uk-margin-small-right" uk-icon="icon: tag"></span>Tags:
+          <a class="jp-side-margin" href="#">Wow,</a>
+          <a class="jp-side-margin" href="#">Wow,</a>
+          <a class="jp-side-margin" href="#">Wow</a>
+     </p>
+     </div>
+   </div>
+</div>
+
+<div class="uk-padding-small">
+  <hr>
+
+  <div class="uk-flex uk-flex-right">
+
+    <a href="#" class="uk-icon-link uk-margin-small-right" uk-icon="copy"></a>
+    <a href="{{ path('editpost',{'postid': blogpost.id}) }}" class="uk-icon-link uk-margin-small-right" uk-icon="file-edit"></a>
+    <a href="#" class="uk-icon-link" uk-icon="trash"></a>
+
+  </div>
+</div>
+
+</li>
+
+
+{% endfor %}
+
+<!-- owo -->
+
+   </ul>
+
+
+   <!-- pagination -->
+
+   <ul class="uk-pagination uk-margin-medium-top uk-flex-center" uk-margin>
+     {% if currentPage > 1 %}
+       <li><a href="{{ path('posts', {'page': currentPage - 1}) }}"><span uk-pagination-previous></span></a></li>
+     {% endif %}
+
+       {% for index in 1..pagesQuantity %}
+              {% if index == currentPage %}
+              <li class="uk-active"><a  href="{{ path('posts', {'page': index}) }}">{{ index }}</a></li>
+              {% else %}
+              <li><a href="{{ path('posts', {'page': index}) }}">{{ index }}</a></li>
+              {% endif %}
+       {% endfor %}
+
+       {% if currentPage < pagesQuantity %}
+       <li><a href="{{ path('posts', {'page': currentPage + 1}) }}"><span uk-pagination-next></span></a></li>
+       {% endif %}
+   </ul>
+
+
+   <!-- pagination -->
+
+  </div>
+
+
+</div>
+</div>
+</div>
+
+{{ include('dashboard/components/foot.html.twig',{ }) }}

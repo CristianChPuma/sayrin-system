@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    {% block stylesheets %}
+                <link href="{{ asset('css/') }}" rel="stylesheet" />
+            {% endblock %}
+
+    <title>BLOG System</title>
+  </head>
+  <body>
+
+
+
+    <ul>
+      <li> <a href="{{ path('posts') }}">Admin Panel</a> </li>
+    </ul>
+
+  </body>
+</html>

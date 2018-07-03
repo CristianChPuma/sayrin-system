@@ -1,0 +1,24 @@
+{% set nav = {
+    home:    {title: "Home", route: "posts", icon:"home", desc: "About Us" },
+    about:    {route: "posts", title: "Posts", icon:"thumbnails", desc: "About Us" },
+    photos:   {title: "Gallery", route: "gallery", icon: "image", desc: "Gallery"},
+    services: {title: "Products", route: "products", icon:"list", desc: "Services" },
+    work:     {title: "About me", route: "posts", icon:"user", desc: "Our Work" },
+    news:     {title: "Settings", route: "posts", icon:"settings", desc: "The Latest" }
+} %}
+
+<div class="nav-left-container uk-height-viewport">
+
+<div class="logo-system uk-text-center uk-margin-medium-top">
+  <h4>Welcome</h4>
+</div>
+
+<ul class="uk-list nav-container">
+
+  {% for item in nav %}
+      <li {% if item.route in app.request.get('_route')  %} class="active"{% endif %}><a href="{{ path(item.route) }}"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: {{ item.icon }}"></span> {{ item.title }}</a></li>
+  {% endfor %}
+
+  </ul>
+
+</div>

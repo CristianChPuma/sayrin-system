@@ -1,0 +1,9 @@
+<!--It gonna show all products from our database-->
+
+<ul>
+
+  {% for product in listProducts %}
+    <li>You can find {{ product.name }} at price of {{ product.price }}  in <a href="products/{{ product.id }}">here</a></li>
+  {%  endfor %}
+
+</ul>
